@@ -1,107 +1,103 @@
 <?php
 
-// Задание 1
+//  Задание 1.
 
-//    $a = rand(-10, 10);
-//    $b = rand(-10, 10);
+//    $a = 0;
 //
-//    echo "a = ", $a, ", ";
-//    echo "b = ", $b, ", ";
-//
-//    if($a >= 0 and $b >= 0) {
-//        echo "их разность = ", $a - $b;
-//    } elseif($a < 0 and $b < 0) {
-//        echo "их произведение = ", $a * $b;
-//    } else {
-//        echo "их сумма = ", $a + $b;
-//    }
-
-// Задание 2
-
-//    $a = rand(0, 15);
-//
-//    switch ($a) {
-//        case 0:
-//            echo 0, " ";
-//        case 1:
-//            echo 1, " ";
-//        case 2:
-//            echo 2, " ";
-//        case 3:
-//            echo 3, " ";
-//        case 4:
-//            echo 4, " ";
-//        case 5:
-//            echo 5, " ";
-//        case 6:
-//            echo 6, " ";
-//        case 7:
-//            echo 7, " ";
-//        case 8:
-//            echo 8, " ";
-//        case 9:
-//            echo 9, " ";
-//        case 10:
-//            echo 10, " ";
-//        case 11:
-//            echo 11, " ";
-//        case 12:
-//            echo 12, " ";
-//        case 13:
-//            echo 13, " ";
-//        case 14:
-//            echo 14, " ";
-//        case 15:
-//            echo 15, " ";
-//    }
-
-// Задание 3, 4
-
-//    function add($arg1, $arg2) {
-//        return $arg1 + $arg2;
-//    }
-//
-//    function sub($arg1, $arg2) {
-//        return $arg1 - $arg2;
-//    }
-//
-//    function mult($arg1, $arg2) {
-//        return $arg1 * $arg2;
-//    }
-//
-//    function div($arg1, $arg2) {
-//        return $arg1 / $arg2;
-//    }
-//
-//    function mathOperations($arg1, $arg2, $operation) {
-//        switch ($operation) {
-//            case "addition":
-//                echo(add($arg1, $arg2));
-//                break;
-//            case "subtraction":
-//                echo(sub($arg1, $arg2));
-//                break;
-//            case "multiplication":
-//                echo(mult($arg1, $arg2));
-//                break;
-//            case "division":
-//                echo(div($arg1, $arg2));
-//                break;
+//    while ($a <= 100) {
+//        if ($a % 3 === 0) {
+//            echo $a . " ";
 //        }
+//        $a++;
 //    }
 
-// Задание 5
+//  Задание 2.
 
-//    $date = date(Y);
-//    $lesson = file_get_contents("lesson.html");
-//    echo (str_replace("{YEAR}", $date, $lesson));
-
-// Задание 6
-
-//    function power($val, $pow) {
-//        if ($pow > 0) {
-//            return $val *= power($val, $pow-1);
-//        } elseif ($pow == 0) {
-//            return 1;
+//    $a = 0;
+//
+//    do {
+//        if ($a === 0) {
+//            echo $a . " - ноль." . '<br>';
+//        } elseif ($a % 2 === 0) {
+//            echo $a . " - четное число." . '<br>';
+//        } else {
+//            echo $a . " - нечетное число." . '<br>';
 //        }
+//        $a++;
+//    } while ($a <= 10);
+
+//  Задание 3.
+
+//    $regions = [
+//        "Московская область" => ["Москва", "Зеленоград", "Клин"],
+//        "Ленинградская область" => ["Санкт-Петербург", "Всеволожск", "Павловск", "Кронштадт"],
+//        "Самарская область" => ["Самара", "Тольятти", "Сызрань", "Новокуйбышевск"],
+//    ];
+//
+//    foreach ($regions as $region => $city) {
+//        echo $region . ':' . '<br>' . implode(', ', $city);
+//        echo '<br>';
 //    }
+
+//  Задания 4, 5, 9.
+
+//    $abc = [
+//        'а' => 'a',
+//        'б' => 'b',
+//        'в' => 'v',
+//        'г' => 'g',
+//        'д' => 'd',
+//        'е' => 'e',
+//        'ж' => 'zh',
+//        'з' => 'z',
+//        'и' => 'i',
+//        'й' => 'i',
+//        'к' => 'k',
+//        'л' => 'l',
+//        'м' => 'm',
+//        'н' => 'n',
+//        'о' => 'o',
+//        'п' => 'p',
+//        'р' => 'r',
+//        'с' => 's',
+//        'т' => 't',
+//        'у' => 'u',
+//        'ф' => 'f',
+//        'х' => 'h',
+//        'ц' => 'c',
+//        'ч' => 'ch',
+//        'ш' => 'sh',
+//        'щ' => 'shch',
+//        'ы' => 'y',
+//        'э' => 'e',
+//        'ю' => 'yu',
+//        'я' => 'ya',
+//        ' ' => '_',
+//    ];
+//
+//    function str_split_unicode($str, $l = 0) {
+//        if ($l > 0) {
+//            $ret = array();
+//            $len = mb_strlen($str, "UTF-8");
+//            for ($i = 0; $i < $len; $i += $l) {
+//                $ret[] = mb_substr($str, $i, $l, "UTF-8");
+//            }
+//            return $ret;
+//        }
+//        return preg_split("//u", $str, -1, PREG_SPLIT_NO_EMPTY);
+//    }
+//
+//    $string = 'случайный набор слов';
+//    $latinArr = [];
+//    $strToArr = str_split_unicode($string);
+//
+//    foreach ($strToArr as $value) {
+//        $latinArr[] = $abc[$value];
+//    }
+//
+//    $arrToStr = implode($latinArr);
+//    echo $arrToStr;
+
+//  Задание 7.
+
+//    for ($i = 0; $i <= 9; print $i, $i++);
