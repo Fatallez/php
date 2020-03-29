@@ -1,103 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Фотогаллерея</title>
+</head>
+<body>
 <?php
 
-//  Задание 1.
+$dir = './img';
 
-//    $a = 0;
-//
-//    while ($a <= 100) {
-//        if ($a % 3 === 0) {
-//            echo $a . " ";
-//        }
-//        $a++;
-//    }
+foreach (new DirectoryIterator($dir) as $img) {
+    if ($img->isDot()) continue;
 
-//  Задание 2.
+    printf('<a href="./img/%s" target="_blank"><img src="./img/%s" width="250px" alt="img"></a>', $img->getFilename(), $img->getFilename());
+}
 
-//    $a = 0;
-//
-//    do {
-//        if ($a === 0) {
-//            echo $a . " - ноль." . '<br>';
-//        } elseif ($a % 2 === 0) {
-//            echo $a . " - четное число." . '<br>';
-//        } else {
-//            echo $a . " - нечетное число." . '<br>';
-//        }
-//        $a++;
-//    } while ($a <= 10);
+$file = './logs/log.txt';
+$lines = count(file($file));
+$iterator = new FilesystemIterator('./logs/', FilesystemIterator::SKIP_DOTS);
 
-//  Задание 3.
-
-//    $regions = [
-//        "Московская область" => ["Москва", "Зеленоград", "Клин"],
-//        "Ленинградская область" => ["Санкт-Петербург", "Всеволожск", "Павловск", "Кронштадт"],
-//        "Самарская область" => ["Самара", "Тольятти", "Сызрань", "Новокуйбышевск"],
-//    ];
-//
-//    foreach ($regions as $region => $city) {
-//        echo $region . ':' . '<br>' . implode(', ', $city);
-//        echo '<br>';
-//    }
-
-//  Задания 4, 5, 9.
-
-//    $abc = [
-//        'а' => 'a',
-//        'б' => 'b',
-//        'в' => 'v',
-//        'г' => 'g',
-//        'д' => 'd',
-//        'е' => 'e',
-//        'ж' => 'zh',
-//        'з' => 'z',
-//        'и' => 'i',
-//        'й' => 'i',
-//        'к' => 'k',
-//        'л' => 'l',
-//        'м' => 'm',
-//        'н' => 'n',
-//        'о' => 'o',
-//        'п' => 'p',
-//        'р' => 'r',
-//        'с' => 's',
-//        'т' => 't',
-//        'у' => 'u',
-//        'ф' => 'f',
-//        'х' => 'h',
-//        'ц' => 'c',
-//        'ч' => 'ch',
-//        'ш' => 'sh',
-//        'щ' => 'shch',
-//        'ы' => 'y',
-//        'э' => 'e',
-//        'ю' => 'yu',
-//        'я' => 'ya',
-//        ' ' => '_',
-//    ];
-//
-//    function str_split_unicode($str, $l = 0) {
-//        if ($l > 0) {
-//            $ret = array();
-//            $len = mb_strlen($str, "UTF-8");
-//            for ($i = 0; $i < $len; $i += $l) {
-//                $ret[] = mb_substr($str, $i, $l, "UTF-8");
-//            }
-//            return $ret;
-//        }
-//        return preg_split("//u", $str, -1, PREG_SPLIT_NO_EMPTY);
-//    }
-//
-//    $string = 'случайный набор слов';
-//    $latinArr = [];
-//    $strToArr = str_split_unicode($string);
-//
-//    foreach ($strToArr as $value) {
-//        $latinArr[] = $abc[$value];
-//    }
-//
-//    $arrToStr = implode($latinArr);
-//    echo $arrToStr;
-
-//  Задание 7.
-
-//    for ($i = 0; $i <= 9; print $i, $i++);
+if (!file_exists($file) || $lines < 10) {
+    file_put_contents('./logs/log.txt', date('r') . PHP_EOL, FILE_APPEND);
+} else {
+        rename($file, './logs/log' . (iterator_count($iterator)-1) . '.txt');
+        file_put_contents('./logs/log.txt', date('r') . PHP_EOL, FILE_APPEND);
+}
+?>
+</body>
+</html>
