@@ -1,30 +1,20 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Фотогаллерея</title>
+    <link rel="stylesheet" href="./css/style.css">
+    <title>Gallery</title>
 </head>
 <body>
-<?php
+    <?php
+        $link = mysqli_connect('127.0.0.1', 'root', '', 'php');
 
-$dir = './img';
+        $sql = 'SELECT * FROM gallery ORDER BY vews DESC';
+        $result = mysqli_query($link, $sql);
 
-foreach (new DirectoryIterator($dir) as $img) {
-    if ($img->isDot()) continue;
-
-    printf('<a href="./img/%s" target="_blank"><img src="./img/%s" width="250px" alt="img"></a>', $img->getFilename(), $img->getFilename());
-}
-
-$file = './logs/log.txt';
-$lines = count(file($file));
-$iterator = new FilesystemIterator('./logs/', FilesystemIterator::SKIP_DOTS);
-
-if (!file_exists($file) || $lines < 10) {
-    file_put_contents('./logs/log.txt', date('r') . PHP_EOL, FILE_APPEND);
-} else {
-        rename($file, './logs/log' . (iterator_count($iterator)-1) . '.txt');
-        file_put_contents('./logs/log.txt', date('r') . PHP_EOL, FILE_APPEND);
-}
-?>
+        while ($row = mysqli_fetch_assoc($result)) {
+            echo '<a href="/img.php?id=' . $row["id"] . '" name="img"><img src="' . $row["path"] . '"></a>';
+        }
+    ?>
 </body>
 </html>
