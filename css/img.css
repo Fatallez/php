@@ -1,0 +1,33 @@
+.container {
+    width: 1024px;
+    margin: 0 auto;
+}
+
+.big_img {
+    margin-bottom: 10px;
+}
+
+form {
+    margin-top: 10px;
+    display: flex;
+    flex-direction: column;
+    width: 550px;
+}
+
+input {
+    margin-bottom: 10px;
+}
+
+textarea {
+    padding: 10px;
+}
+
+input[type='submit'] {
+    width: 150px;
+}
+
+.comment {
+    border: 1px solid black;
+    margin-bottom: 5px;
+    padding-left: 15px;
+}
