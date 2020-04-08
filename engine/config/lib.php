@@ -13,3 +13,13 @@ function getPage(array $pages)
 
     return $pages[$pageNumber];
 }
+
+function getConnect() {
+    static $link;
+
+    if (empty($link)) {
+        $link = mysqli_connect('127.0.0.1', 'root', '', 'php');
+    }
+
+    return $link;
+}

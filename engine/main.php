@@ -5,9 +5,10 @@
 
     $page = getPage($pages);
 
+    session_start();
     ob_start();
     include 'pages/' . $page;
     $content = ob_get_clean();
 
-    $html = file_get_contents('main.html');
+    $html = file_get_contents(__DIR__ . '/main.html');
     echo str_replace('{{CONTENT}}', $content, $html);
