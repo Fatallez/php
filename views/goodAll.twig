@@ -1,0 +1,16 @@
+{% extends 'layouts/main.twig' %}
+
+{% block content %}
+    <ul>
+        {% for good in goods %}
+            <li>
+                <a href="/good/one?id={{ good.id }}">
+                {{ good.name|e }}
+                </a>
+                <p>{{ good.price }} руб.</p>
+            </li>
+        {% else %}
+            <li><em>no good found</em></li>
+        {% endfor %}
+    </ul>
+{% endblock %}
