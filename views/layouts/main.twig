@@ -2,12 +2,12 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Document</title>
+    <title>{{ title }}</title>
 </head>
 <body>
     <ul>
         {% for item in menu %}
-            <li><a href="{{item.href}}">{{item.name}}</a></li>
+            <li><a href="{{ item.href }}">{{ item.name }}</a></li>
         {% else %}
             <li><a href="/">Главная</a></li>
         {% endfor %}

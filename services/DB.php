@@ -1,22 +1,38 @@
 <?php
 namespace App\services;
 
-use App\traits\SingletonT;
+use App\core\Container;
+use App\repositories\Repository;
 
 class DB
 {
-    use SingletonT;
-
-    protected $config = [
-        'driver' => 'mysql',
-        'host' => 'localhost:3307',
-        'dbname' => 'php',
-        'charset' => 'UTF8',
-        'username' => 'root',
-        'password' => '',
-    ];
-
+    protected $config = [];
     protected $connection;
+    protected $container;
+
+    public function __construct(array $config)
+    {
+        $this->config = $config;
+    }
+
+    public function setContainer(Container $container)
+    {
+        $this->container = $container;
+    }
+
+    /**
+     * @param $repositoryName
+     * @return Repository|null
+     */
+    public function getRepository($repositoryName)
+    {
+        if (empty($this->container)) {
+            return null;
+        }
+
+        $repositoryName .= 'Repository';
+        return $this->container->$repositoryName;
+    }
 
     protected function getConnection()
     {

@@ -15,7 +15,7 @@ class GoodController extends Controller
             $id = (int)$_GET['id'];
         }
 
-        $good = (new GoodRepository())->getOne($id);
+        $good = $this->getRepository('good')->getOne($id);
 
         return $this->render(
             'goodOne',
@@ -28,12 +28,12 @@ class GoodController extends Controller
 
     public function allAction()
     {
-        $goods = (new GoodRepository())->getAll();
+        $goods = $this->getRepository('good')->getAll();
         return $this->render(
             'goodAll',
             [
                 'goods' => $goods,
-                'title' => 'Все товары',
+                'title' => $this->app->getConfig('title'),
                 'menu' => $this->getMenu(),
             ]
         );
@@ -47,7 +47,7 @@ class GoodController extends Controller
             $good->info = $_POST['info'];
             $good->price = $_POST['price'];
 
-            (new GoodRepository())->save($good);
+            $this->getRepository('Good')->save($good);
             header('Location: /good/all' );
             return '';
         }

@@ -1,0 +1,21 @@
+{% extends 'layouts/main.twig' %}
+
+{% block content %}
+    <ul>
+        {% for good in goods %}
+            <li>
+                <h2>{{ good.name|e }}</h2>
+                <p>{{ good.price }} руб.</p><br>
+                <p>{{ good.count }} шт. </p><br>
+                <a href="/basket/add?id={{ good.id }}">+</a>
+                <a href="/basket/del?id={{ good.id }}">-</a>
+                <hr>
+            </li>
+        {% else %}
+            <h2><em>Корзина пуста</em></h2>
+        {% endfor %}
+    </ul>
+    {% if totalPrice > 0 %}
+        <h2>Итого: {{ totalPrice }} руб.</h2>
+    {% endif %}
+{% endblock %}

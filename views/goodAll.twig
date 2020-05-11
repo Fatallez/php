@@ -7,7 +7,9 @@
                 <a href="/good/one?id={{ good.id }}">
                 {{ good.name|e }}
                 </a>
-                <p>{{ good.price }} руб.</p>
+                <p>{{ good.price }} руб.</p><br>
+                <a href="/basket/add?id={{ good.id }}">Добавить в корзину</a>
+                <hr>
             </li>
         {% else %}
             <li><em>no good found</em></li>

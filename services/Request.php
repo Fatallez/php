@@ -12,10 +12,9 @@ class Request
 
     public function __construct()
     {
+        session_start();
         $this->queryString = $_SERVER['REQUEST_URI'];
         $this->prepareRequest();
-
-
     }
 
     protected function prepareRequest()
@@ -36,6 +35,31 @@ class Request
         if (!empty($_GET['id'])) {
             $this->id = (int)$_GET['id'];
         }
+    }
+
+    public function getSession($key = null)
+    {
+        if (empty($key)) {
+            return $_SESSION;
+        }
+
+        if (empty($_SESSION[$key])) {
+            return [];
+        }
+
+        return $_SESSION[$key];
+    }
+
+    public function setSession($key, $value)
+    {
+        $_SESSION[$key] = $value;
+    }
+
+    public function redirectApp($msg = '') {
+        if (!empty($msg)) {
+            $this->setSession('msg', $msg);
+        }
+        header('location: ' . $_SERVER['HTTP_REFERER']);
     }
 
     /**

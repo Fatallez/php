@@ -13,7 +13,7 @@ class UserController extends Controller
         if (!empty($_GET['id'])) {
             $id = (int)$_GET['id'];
         }
-        $user = (new UserRepository()) -> getOne($id);
+        $user = $this->getRepository('user')->getOne($id);
         return $this->render('userOne',
             [
                 'user' => $user,
@@ -23,16 +23,11 @@ class UserController extends Controller
 
     public function allAction()
     {
-        $users = (new UserRepository()) -> getAll();
+        $users = $this->getRepository('user')->getAll();
         return $this->render('userAll',
             [
                 'users' => $users,
                 'menu' => $this->getMenu(),
             ]);
-    }
-
-    public function insertAction()
-    {
-
     }
 }
