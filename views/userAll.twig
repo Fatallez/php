@@ -1,0 +1,17 @@
+{% extends 'layouts/main.twig' %}
+
+{% block content %}
+    <ul>
+        {% for user in users %}
+            <li>
+                <a href="/user/one?id={{ user.id }}">
+                    {{ user.name|e }}
+                </a>
+                <p>{{ user.login }}</p>
+                <hr>
+            </li>
+        {% else %}
+            <li><em>no user found</em></li>
+        {% endfor %}
+    </ul>
+{% endblock %}
